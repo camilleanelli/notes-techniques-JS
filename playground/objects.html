@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title></title>
+  <link rel="stylesheet" href="../base.css">
+</head>
+
+<body>
+  <script src="https://unpkg.com/lodash"></script>
+  <script>
+    // creer un objet :
+    let age = 20;
+
+    const person = {
+      // age revient à faire age: age
+      age,
+      name: 'Ron',
+      // possible de mettre des quotes sur les proprietes
+      'cool': true,
+      '666': true,
+      // on peut nester un objet:
+      location: {
+        name: 'Hogwart',
+      },
+      fou: 'never'
+    }
+
+    // ici on modifie notre objet en ajoutant une propriete
+    person.color = 'blue';
+
+    // pour rendre l'objet immutable
+    // const personFroze = Object.freeze(person);
+    // l'objet est immutable
+    person.age = 50;
+    console.log(person);
+
+    // acceder à une propriété
+    // si la propriété d'un objet est stockée dans une variable ou que c'est une string on utilise la syntaxe avec les crochets
+    // const fou = prompt('est ce que tu es fou?');
+    console.log(person['age']);
+    // console.log(fou);
+
+    // supprimer un proprieté
+    delete person.age;
+    // devient undefined pour la propriete age
+    console.log(person.age);
+
+    // methods vs functions :
+    // la méthode est une fonction dans un objet
+    const person3 = {
+      sayHello: function (greeting = 'Hey!') {
+        return `Hello ${greeting} ${this.name}`;
+      },
+      gender: 'male',
+      name: 'James',
+    }
+    console.log(person3.sayHello());
+
+    // unicité des objets
+    const person2 = {
+      name: 'James',
+      age: 40
+    }
+
+    const other = {
+      name: 'James',
+      age: 40
+    }
+
+    // un objet est unique meme si on fait une copie
+    console.log(other === person2);
+    // false
+
+    // ici je pointe la valeur sur une autre variable: ( et non une copie )
+    person1 = person2;
+    console.log(person1 === person2);
+    // true
+
+    // person1.name = 'George';
+    // // ici person2 sera donc modifiée
+    // console.log(person2.name);
+    // // George
+
+    let name1 = 'James';
+    let name2 = name1;
+    console.log(name1 === name2);
+    // true
+    name1 = 'Juliette';
+    console.log(name1 === name2);
+
+    // spread operator
+
+    // ici on fait un clone
+    const person4 = { ...person2 };
+    person4.name = 'camille';
+    console.log(person2.name);
+    // toujours celui de l'objet initial
+    // sauf pour un objet nesté, il y aura une modification
+
+    // on utilise donc Lodash pour cloner des objets en profondeur sans prise de tete:
+    // https://lodash.com/docs/4.17.15#cloneDeep
+
+    const toto = _.cloneDeep(person2);
+    console.log(toto);
+    toto.name = 'eeee';
+    console.log(person2.name);
+
+    // assembler plusieurs objets avec le spread operator
+    const books = {
+      personnalBranding: 3,
+      cooking: 4
+    };
+
+    const books2 = {
+      business: 4,
+      lifeStyle: 'Montana'
+    };
+
+    const inventory = { ...books, ...books2, fiction: 6 };
+    console.log(inventory);
+    // Note: si on a des proprietes identiques d'un objet à l'autre alors c'est 'overrider', on ne peut pas avoir 2 cles identiques dans l'objet final
+  </script>
+</body>
+
+</html>

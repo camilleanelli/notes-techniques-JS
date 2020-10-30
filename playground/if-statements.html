@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>If Statements</title>
+  <link rel="stylesheet" href="../base.css">
+</head>
+
+<body>
+  <script>
+    const age = 4;
+    if (age > 2) {
+      console.log('Yep');
+    } else if (age < 2) {
+      console.log('foo');
+    } else {
+      console.log('oups');
+    }
+
+    function slugify(sentence, lowercase) {
+      if (lowercase) {
+        return sentence.replace(/\s/g, '-').toLowerCase();
+        // on peut retirer le else parce que return stop la fonction une fois la valeur retournée
+      }
+      return sentence.replace(/\s/g, '-');
+    }
+
+    // les trucs un peu wtf en JS:
+
+    // 10 != '10' ( on vérifie si 10 n'est pas == )
+    // false
+    // 10 === '10'
+    // false
+    // 10 !== '10' (n'est pas === )
+    // true
+    // '10' >= 10 ( parce '10' est supérieur ou == à 10, et '10' == 10 est true )
+    // true
+
+    // concepte de truthy et falsy:
+
+    // falsy values:
+    // 0
+    // "" ou ''
+    // undefined
+    // null
+    // NaN
+
+    const dog = '';
+    // attention "" vs " " , une string avec rien dedans est truthy
+
+    if (dog) {
+      console.log('you have a dog');
+    } else {
+      console.log('you dont have a dog');
+    }
+
+    [0, '', false, [], {}, 1, ' ', undefined, NaN, null, 'full string'].forEach(function (value) {
+      if (value) {
+        console.log(`${value} is truthy`);
+      } else
+        console.log(`${value} is falsy`);
+    })
+
+    console.clear();
+
+    // coercion: forcer quelque chose à renvoyer true ou false
+    const isCool = true;
+
+    const name = 'James';
+    // !name
+    // false
+    // !!name
+    // true
+
+    //conditions ternaires (ternaries)
+    // c'est comme en ruby
+    const count = 1;
+    const word = count === 1 ? 'item' : 'items';
+
+    // word
+    // "item"
+    function showAdmin() {
+      console.log('showing admin');
+    }
+    const isAdmin = true;
+    isAdmin ? showAdmin() : null
+
+
+  </script>
+</body>
+
+</html>

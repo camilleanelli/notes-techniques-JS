@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Maps</title>
+  <link rel="stylesheet" href="../base.css">
+</head>
+
+<body>
+
+  <ul class="prizes">
+
+  </ul>
+  <script>
+
+    const hobbies = {
+      traveling: true,
+      reading: true
+    };
+
+    const myMap = new Map();
+
+
+    // set des cles et valeurs
+    myMap.set('name', 'James');
+    myMap.set('location', 'England');
+    // on peut metre n'importe quel type
+    myMap.set(200, 'ok');
+    // un objet peut y etre stocké
+    myMap.set(hobbies, 'super cool');
+    console.log(myMap);
+
+    console.log(myMap.get(hobbies));
+
+    const score = 300;
+    const prizes = new Map();
+    prizes.set(500, 'Bear');
+    prizes.set(300, 'Gun');
+    prizes.set(400, 'Cabane');
+
+    console.log(prizes.get(score));
+    console.log(prizes);
+    const ul = document.querySelector('.prizes');
+    // on boucle sur la map et on prend 2 variables points et prize ( cles valeur )
+    for (const [point, prize] of prizes) {
+      const li = `<li> ${point} - ${prize}</li>`;
+      ul.insertAdjacentHTML('beforeend', li);
+    }
+
+    // JSON
+    JSON.stringify(hobbies);
+    // "{"traveling":true,"reading":true}"
+
+    console.log(JSON.parse('{"traveling":true,"reading":true}'));
+
+    // pas possible pour un Map\
+    JSON.stringify(prizes)
+    // "{}"
+  </script>
+</body>
+
+</html>

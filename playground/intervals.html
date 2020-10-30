@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Intervals and Timers</title>
+  <link rel="stylesheet" href="../base.css">
+</head>
+
+<body>
+  <script>
+    function buzzer() {
+      console.log('ENGGGGGGGG');
+    }
+
+    // console.log('start');
+    // // sera lancé apres les 2 logs car au bout de 1000 milisecondes
+    // setTimeout(buzzer, 1000);
+
+    // console.log('finish');
+    // setInterval(buzzer, 2000);
+
+    function setImmediateInterval(thecallback, ms) {
+      thecallback();
+      return setInterval(thecallback, 5000);
+    }
+
+    setImmediateInterval(buzzer, 4000);
+    // arreter un timer :
+
+    function destroyed() {
+      document.body.innerHTML = `<p> DESTROYED </p>`;
+    }
+    // 0n stock le timer dans une variable:
+    const bomb = setTimeout(destroyed, 5000);
+    console.log('you have clicked!');
+    window.addEventListener('click', function () {
+      clearTimeout(bomb);
+    })
+
+    // clearInterval pour stopper intervalles
+  </script>
+</body>
+
+</html>

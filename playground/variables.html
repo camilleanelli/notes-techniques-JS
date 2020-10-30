@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Variables!</title>
+  <link rel="stylesheet" href="../base.css">
+</head>
+
+<body>
+  <script>
+    // on termine un état ( statement ) avec un point virgule
+    // statement c'est une instruction donnée au navigateur
+    var first = 'camille';
+    let age = 33;
+    const cool = true;
+    console.log(first);
+
+    if (age > 33) {
+      console.log('too young');
+    }
+
+    // ils peuvent changer :
+    first = 'james';
+    console.log(first);
+
+    // sauf la variable const
+    let cool = false;
+    // Uncaught TypeError: Assignment to constant variable.
+    // at variables.html:29
+
+    // function scoped qui n'est pas dépréciée mais on a tendance à préférer utiliser let ou const
+    var toto;
+    // block scoped
+    let tata;
+    const titi;
+
+    // variable doit commencer par une minuscule par convention
+    let kitKat = 'kitkat';
+
+  // characters speciaux peuvent etre des noms de variables mais déconseillé par convention
+
+  </script>
+</body>
+
+</html>

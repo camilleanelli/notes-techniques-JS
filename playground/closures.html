@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title></title>
+  <link rel="stylesheet" href="../base.css">
+</head>
+
+<body>
+  <script>
+    let dog = 'bobo';
+    //  closures : acceder à la donnée proche
+    function welcomeHome(name) {
+      console.log(`welcome home ${name}`);
+      // ici const ok est une fonction parente par rapport à la fonction retournée ensuite
+      const ok = `${name}`;
+      return function (other) {
+        console.log(dog);
+
+        // on appel ici la fonction parente 'ok' et on a besoins de l'argument pour retourner la valeur
+        return `${ok} and ${other} is welcome`;
+      }
+    }
+
+    // on peut passer 2 arguments dans le bon ordre
+    // le 2eme sera celui de la fonction wrappée
+    const firstWelcome = welcomeHome('camille', 'other person');
+    console.log(firstWelcome());
+
+    const secondWelcome = welcomeHome('Namjoom');
+    // firstWelcome ici a déjà appelé la fonction en lui passant un argument
+    // on sait que l'argument passé est forcément celui de la fonction wrappée
+    console.log(firstWelcome('another person'))
+
+    // closure est la capacité pour une fonction wrappée à acceder aux variables définies dans un scope plus élevé ( la fonction parente )
+    // meme apres que la fonction ait été appelée
+  </script>
+</body>
+
+</html>
