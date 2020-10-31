@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>
+
+  </title>
+  <link rel="stylesheet" href="../../base.css">
+</head>
+
+<body>
+  <script>
+
+
+
+    /*
+      Static Methods
+    */
+
+    // c'est une méthode qui s'applique sur l'objet Array, et non sur le prototype de l'objet Array.prototype ( comme une méthode de class en ruby)
+    // Array.of();
+
+    // Make a function that creates a range from x to y with Array.from();
+    function createRange(start, end) {
+      const arrayRange = Array.from({ length: end - start + 1 }, function (item, index) {
+        return `${start + index} hello`;
+      });
+      return arrayRange;
+    }
+    // Check if the last array you created is really an array with Array.isArray();
+    // typeOf renvoie un 'object' et non array
+    const result = createRange(3, 7);
+    Array.isArray(result);
+    // true
+
+    // Take the meats object and make three arrays with Object.entries(), Object.keys, Object.values()
+    const meats = {
+      beyond: 10,
+      beef: 5,
+      pork: 7
+    };
+
+    // une entry est un array avec la cles et la valeur
+    console.log(Object.entries(meats));
+    console.log(Object.keys(meats));
+    console.log(Object.values(meats));
+
+    Object.entries(meats).forEach(element => {
+      // un élément est donc un array de la cles et de la valeur en items
+      // ici je peux stocker ces items dans 2 variables respectives:
+      const [key, value] = element;
+      console.log(key);
+      console.log(value);
+    });
+    /*
+      Instance Methods
+    */
+
+    // Display all bun types with " or " - use join()
+    const buns = ['egg', 'wonder', 'brioche'];
+    console.log(buns.join(' or '));
+    // We have a string "hot dogs,hamburgers,sausages,corn" - use split() to turn it into an array
+    const listString = 'caramel, chamallow, lolipop';
+    listString.split(',')
+
+    // take the last item off toppings with pop()
+    const toppings = ['Mushrooms ', 'Tomatoes', 'Eggs', 'Chili', 'Lettuce', 'Avocado', 'Chiles', 'Bacon', 'Pickles', 'Onions', 'Cheese'];
+
+    const last = toppings.pop();
+    // add it back with push()
+    toppings.push(last);
+    console.log(toppings);
+    // take the first item off toppings with shift()
+    const first = toppings.shift();
+    // add it back in with unshift()
+    toppings.unshift(first);
+    console.log(toppings);
+    // Do the last four,but immutable (with spreads and new variables)
+    const lastItem = toppings.slice(0, toppings.length - 1);
+    console.log(lastItem);
+    const newToppings = [...lastItem, toppings[toppings.length - 1]];
+    console.log(newToppings);
+    // Make a copy of the toppings array with slice()
+    const copyToppings = toppings.slice();
+    console.log(copyToppings);
+    // Make a copy of the toppings array with a spread
+    const copyToppingsSpread = [...toppings];
+    console.log(copyToppingsSpread);
+
+    // take out items 3 to 5 of your new toppings array with splice()
+    const sliceArray = copyToppingsSpread.slice(3, 6);
+    console.log(sliceArray);
+
+    // find the index of Avocado with indexOf() / lastIndexOf()
+    const avocado = sliceArray.indexOf('Avocado');
+
+    console.log(avocado);
+    // Check if hot sauce is in the toppings with includes()
+    const isHotSauce = toppings.includes('Hot Sauce');
+    console.log(isHotSauce);
+    // add it if it's not
+    if (!isHotSauce) {
+      toppings.push('Hot Sauce');
+    }
+    console.log(toppings);
+
+    // flip those toppings around with reverse()
+    console.log(toppings.reverse());
+    // methode mutable
+
+    /*
+      Callback Methods
+    */
+    // methodes de rappel qui sont appelées dans un find par exemple
+
+    const feedback = [
+      { comment: 'Love the burgs', rating: 4 },
+      { comment: 'Horrible Service', rating: 2 },
+      { comment: 'Smoothies are great, liked the burger too', rating: 5 },
+      { comment: 'Ambiance needs work', rating: 3 },
+      { comment: 'I DONT LIKE BURGERS', rating: 1 },
+    ];
+    // find the first rating that talks about a burger with find()
+    // find return un objet ou undefined
+    function findBurgerRating(element) {
+      // if (element.comment.includes('burg')) {
+      //   return true;
+      // } else {
+      //   return false;
+      // }
+      return element.comment.includes("burg");
+    };
+
+    const burgRating = feedback.find(findBurgerRating);
+    console.log(burgRating);
+
+    function findByWord(word) {
+      return function (element) {
+        return element.comment.includes(word)
+      }
+    };
+
+    const findSmooth = feedback.find(findByWord('Smoothie'));
+    console.log(findSmooth);
+    // find all ratings that are above 2 with filter()
+    function filterByRating(number) {
+      return function (element) {
+        return element.rating > number;
+      }
+    }
+    const goodRating = feedback.filter(filterByRating(4));
+    // const goodRating = feedback.filter(element => element.rating > 2);
+    console.table(goodRating);
+
+    // find all ratings that talk about a burger with filter()
+    const burgerFilter = feedback.filter(element => element.comment.includes('burg'));
+    console.log(burgerFilter);
+
+    // Remove the one star rating however you like!
+    const feedbackLegitime = feedback.filter(element => element.rating !== 1);
+    console.table(feedbackLegitime);
+
+    // check if there is at least 5 of one type of meat with some()
+    const typeMeat = Object.values(meats).some(element => element >= 5);
+    console.log(typeMeat);
+    // make sure we have at least 3 of every meat with every()
+    const isEnoughtMeat = Object.values(meats).every(element => element >= 3);
+    console.log(isEnoughtMeat);
+
+    // sort the toppings alphabetically with sort()
+    console.log(toppings.sort());
+
+    // sort the numbers :
+    const numbers = [1, 3, 4, 2, 1, 3];
+    const orderNumbers = numbers.sort(function (first, last) {
+      // first est le chiffre suivant
+      console.log(first, last);
+      // les chiffres vont etre deplacés en fonction de si c'est la soustraction est positive, négative, ou zero
+      console.log(first - last);
+      return first - last;
+    })
+    console.log(orderNumbers);
+
+    // sort the order totals from most expensive to least with .sort()
+    const orderTotals = [342, 1002, 523, 34, 634, 854, 1644, 2222];
+    const mostExp = orderTotals.sort((a, b) => b - a);
+    console.log(mostExp);
+
+    // Sort the prices with sort()
+    const prices = {
+      hotDog: 453,
+      burger: 765,
+      sausage: 634,
+      corn: 234,
+    };
+
+    const sortPrices = Object.entries(prices).sort((a, b) => a[1] - b[1]);
+    // re transformer en objet:
+    console.log(Object.fromEntries(sortPrices));
+    /*
+      Looping Methods (next)
+    */
+
+  </script>
+</body>
+
+</html>
