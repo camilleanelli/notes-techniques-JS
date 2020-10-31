@@ -11,7 +11,100 @@
 </head>
 
 <body>
+  <script>
+    const names = ['Hermione', 'Harry', 'Ron'];
+    // le type est un objet typeOf names "object"
+    Array.isArray(names);
+    // true
 
+    console.log(names[1]);
+    // comme pour Ruby
+    console.log(names.length);
+    console.log(names[names.length - 1]);
+
+    // Mutation
+    // des méthodes transforment l'objet originale
+    const numbers = [1, 2, 3, 4, 5];
+    // numbers.reverse();
+    console.log(numbers);
+
+    // des méthodes retournent un nouvel objet (immutable )
+    console.log(numbers.slice(2, 3));
+    console.log(numbers);
+    // renvoie l'original
+
+    // pour ne pas muter un objet avec une méthode mutable
+    // on fait une copie de l'objet
+    const reversedNumbers = [...numbers];
+    reversedNumbers.reverse();
+    console.log(reversedNumbers);
+    console.log(numbers);
+
+    // ajouter des éléments
+    names.push('tobby');
+    console.log(names);
+
+    // plus courant en react: faire une copie de l'objet
+    const copyNames = [...names, 'Voldemort'];
+    console.log(copyNames);
+
+    // supprimer des éléments
+    names.unshift('Voldemort');
+    console.log(names);
+    names.splice(4);
+    // on a retiré l'élément de l'index 4 (mutation de l'originale)
+    console.log(names);
+
+    const takeElement = names.slice(2, 3);
+    // ici j'ai stocké l'élément de l'index 2 seulement
+    console.log(names);
+    console.log(takeElement);
+    console.log(names);
+
+    // ajouter élément (au milieur par exemple):
+    const fruits = ['orange', 'apple', 'peach', 'strawberry'];
+    const newFruits = [
+      // on prend une copie du tableau et ses les 2 premiers éléments
+      ...fruits.slice(0, 2),
+      'banana',
+      ...fruits.slice(2)
+    ]
+
+    console.log(newFruits);
+
+    // retrouver un index, array avec des objets
+    // findIndex s'attend à recevoir une foncion et renvoie l'index
+    const findHermione = names.findIndex(name => name === 'Hermione');
+    // console.log(findHermione); //1
+
+    const withoutHermione = [
+      ...names.slice(0, findHermione),
+      ...names.slice(findHermione + 1)
+    ]
+    console.log(withoutHermione);
+
+
+    let myMessages = [
+      { text: 'toto', id: 333 },
+      { text: 'foo', id: 444 },
+      { text: 'bar', id: 555 }
+    ];
+
+    // ici on veut pouvoir supprimer des messages:
+    function deleteMessage(id, messages) {
+      const findIndexMessage = messages.findIndex(message => message.id === id);
+      return [
+        ...messages.slice(0, findIndexMessage),
+        ...messages.slice(findIndexMessage + 1)
+      ]
+    }
+
+    // pour muter l'objet :
+    myMessages = deleteMessage(333, myMessages);
+    console.log(myMessages);
+
+
+  </script>
 </body>
 
 </html>
