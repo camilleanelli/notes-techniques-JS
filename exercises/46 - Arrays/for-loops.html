@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>For Loops</title>
+</head>
+
+<body>
+  <script>
+    const numbers = [2, 34, 3, 23, 42, 3, 1, 65, 364, 5, 645, 6];
+
+    const name = 'Wes Bos';
+
+    // For
+    // très peu utilisé en réalité
+    for (let i = 0; i <= 10; i++) {
+      console.log(i);
+    }
+    // For of
+    // on ne peut pas retourner une valeurs, ni retouner l'index directement
+    for (number of numbers) {
+      const index = numbers.indexOf(number);
+      console.log(index);
+      console.log(`this is my ${number}`);
+    }
+
+    // For in
+    // utiliser pour boucler sur les cles d'un objet:
+    myObject = {
+      name: 'Nom',
+      age: 'age'
+    }
+
+    for (const prop in myObject) {
+      console.log(prop);
+    }
+
+
+    // While Loop
+    // prend une condition et la boucle s'arrete lorsque la condition retourne false
+    let superCool = true;
+    let i = 0;
+    while (superCool === true) {
+      console.log('this is super cool');
+      i++;
+      if (i > 100) {
+        superCool = false;
+      };
+    }
+  </script>
+</body>
+
+</html>
