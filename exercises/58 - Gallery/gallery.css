@@ -31,7 +31,10 @@
       display: grid;
       align-items: center;
       justify-items: center;
+      /* pointer event les click ne sont pas detecté */
       pointer-events: none;
+      /* ici l'élément est invisible */
+      /* en faite la modale prend toute la page */
       opacity: 0;
       transition: opacity 0.5s;
     }
